@@ -6,19 +6,19 @@ metadata:
   labels:
     app: {{ .Release.Name }}
   annotations:
+    kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/canary: "true"
     nginx.ingress.kubernetes.io/canary-weight: "20"
 spec:
   rules:
-    - host: {{ .Values.ingress.host | quote }}
-      http:
+    - http:  # Adding the hyphen (-) to ensure this is a list item
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
                 name: {{ .Release.Name }}-canary
-                port: 
+                port:
                   number: {{ .Values.service.port }}
 ---
 apiVersion: networking.k8s.io/v1
@@ -27,16 +27,17 @@ metadata:
   name: {{ .Release.Name }}-main-ingress
   labels:
     app: {{ .Release.Name }}
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-    - host: {{ .Values.ingress.host | quote }}
-      http:
+    - http:  # Adding the hyphen (-) here as well
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
                 name: {{ .Release.Name }}
-                port: 
+                port:
                   number: {{ .Values.service.port }}
 {{- end }}
