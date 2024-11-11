@@ -46,7 +46,7 @@ rollback_test:
 # Error Budget Calculation (based on 99.9% SLO)
 error_budget:
   monthly_error_budget_seconds: 2.592 #TODO: Calculate and enter the monthly error budget in seconds
-  remaining_error_budget_percentage: 61.4 #TODO: Enter current remaining error budget percentage
+  remaining_error_budget_percentage: "2562s = %98.84" #TODO: Enter current remaining error budget percentage
 
 # Additional Observations
 observations:
