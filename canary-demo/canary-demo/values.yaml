@@ -15,7 +15,7 @@ ingress:
   host: "canary-demo.local"
 
 canary:
-  enabled: true
+  enabled: false
   replicaCount: 1
   image:
     tag: "v3"
